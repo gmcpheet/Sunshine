@@ -19,6 +19,9 @@ public class MainActivity extends ActionBarActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+
+        Log.d(LOG_TAG,"onCreate method entered.");
+
         setContentView(R.layout.activity_main);
         if (savedInstanceState == null)
         {
@@ -26,6 +29,41 @@ public class MainActivity extends ActionBarActivity
                     .add(R.id.container, new ForecastFragment())
                     .commit();
         }
+    }
+
+    @Override
+    protected void onPause()
+    {
+        super.onPause();
+        Log.d(LOG_TAG,"OnPause method entered.");
+    }
+
+    @Override
+    protected void onResume()
+    {
+        super.onResume();
+        Log.d(LOG_TAG,"OnResume method entered.");
+    }
+
+    @Override
+    protected void onStop()
+    {
+        super.onStop();
+        Log.d(LOG_TAG,"OnStop method entered.");
+    }
+
+    @Override
+    protected void onStart()
+    {
+        super.onStart();
+        Log.d(LOG_TAG,"OnStart method entered");
+    }
+
+    @Override
+    protected void onDestroy()
+    {
+        super.onDestroy();
+        Log.d(LOG_TAG,"onDestroy method entered.");
     }
 
     @Override
