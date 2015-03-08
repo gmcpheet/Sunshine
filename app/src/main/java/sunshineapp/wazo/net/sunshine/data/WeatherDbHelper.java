@@ -3,6 +3,7 @@ package sunshineapp.wazo.net.sunshine.data;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import sunshineapp.wazo.net.sunshine.data.WeatherContract.LocationEntry;
 import sunshineapp.wazo.net.sunshine.data.WeatherContract.WeatherEntry;
@@ -17,6 +18,7 @@ public class WeatherDbHelper extends SQLiteOpenHelper
     private static final int DATABASE_VERSION = 2;
 
     static final String DATABASE_NAME = "weather.db";
+    private static final String LOG_TAG = WeatherDbHelper.class.getSimpleName();
 
     public WeatherDbHelper(Context context)
     {
@@ -58,6 +60,22 @@ public class WeatherDbHelper extends SQLiteOpenHelper
                 WeatherEntry.COLUMN_LOC_KEY + ") ON CONFLICT REPLACE);";
 
         sqLiteDatabase.execSQL(SQL_CREATE_WEATHER_TABLE);
+
+        // Next create the location table. Note that the _ID needs to be set to UNIQUE as
+        // it serves as a FOREIGN KEY to in the weather_entry table and hence it must not
+        // change/be replaced by a new location.
+
+        final String SQL_CREATE_LOCATION_TABLE = "CREATE TABLE " + LocationEntry.TABLE_NAME + " (" +
+                LocationEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                LocationEntry.COLUMN_LOCATION_SETTING + " TEXT UNIQUE NOT NULL, " +
+                LocationEntry.COLUMN_CITY_NAME + " TEXT NOT NULL, " +
+                LocationEntry.COLUMN_COORD_LAT + " REAL NOT NULL, " +
+                LocationEntry.COLUMN_COORD_LONG + " REAL NOT NULL " +
+                " );";
+
+        Log.d(LOG_TAG,"SQL String is: " + SQL_CREATE_LOCATION_TABLE);
+
+        sqLiteDatabase.execSQL(SQL_CREATE_LOCATION_TABLE);
     }
 
     @Override
