@@ -25,6 +25,7 @@ public class WeatherContract
     // looking at weather data. content://com.example.android.sunshine.app/givemeroot/ will fail,
     // as the ContentProvider hasn't been given any information on what to do with "givemeroot".
     // At least, let's hope not. Don't be that dev, reader. Don't be that dev.
+
     public static final String PATH_WEATHER = "weather";
     public static final String PATH_LOCATION = "location";
 
@@ -119,11 +120,11 @@ public class WeatherContract
         }
 
         /*
-            Student: Fill in this buildWeatherLocation function
+            Student: I Filled in this buildWeatherLocation function
         */
         public static Uri buildWeatherLocation(String locationSetting)
         {
-            return null;
+            return CONTENT_URI.buildUpon().appendPath(locationSetting).build();
         }
 
         public static Uri buildWeatherLocationWithStartDate(
