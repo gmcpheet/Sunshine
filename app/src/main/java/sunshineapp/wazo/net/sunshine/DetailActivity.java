@@ -24,7 +24,6 @@ import sunshineapp.wazo.net.sunshine.data.WeatherContract;
 
 public class DetailActivity extends ActionBarActivity
 {
-
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
