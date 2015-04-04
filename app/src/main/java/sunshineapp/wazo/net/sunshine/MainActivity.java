@@ -49,6 +49,7 @@ public class MainActivity extends ActionBarActivity implements ForecastFragment.
         else
         {
             mTwoPane = false;
+            getSupportActionBar().setElevation(0f);  // don't want to cast shadow
         }
 
         ForecastFragment forecastFragment = ((ForecastFragment)getSupportFragmentManager()
