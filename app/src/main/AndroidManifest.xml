@@ -44,6 +44,13 @@
                 android:value=".MainActivity" />
         </activity>
 
+        <provider
+            android:authorities="sunshineapp.wazo.net.sunshine"
+            android:name=".data.WeatherProvider" />
+
+        <service android:name=".service.SunshineService"/>
+
+
     </application>
 
 </manifest>
